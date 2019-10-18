@@ -25,8 +25,8 @@ all file per lock like the current version of fasteners.
 Setup fasteners:
 
 ```sh
-$ # use the externals directory to clone the dependencies to test
-$ cd externals/
+$ # use the `payloads` directory to clone the dependencies to test
+$ cd payloads/
 $ git clone https://github.com/harlowja/fasteners
 $ cd fasteners
 $ git checkout offset-locks
@@ -38,7 +38,7 @@ $ cd ..
 Then execute the poc:
 
 ```sh
-$ python poc.py
+$ python pocs/locks.py
 ```
 
 ### reset your lab
@@ -46,6 +46,7 @@ $ python poc.py
 ```sh
 $ deactivate
 $ pipenv --rm
+$ rm -rf payloads/*
 $ pipenv shell
 $ pip install -r requirements
 ```
