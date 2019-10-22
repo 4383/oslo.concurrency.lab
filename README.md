@@ -8,6 +8,7 @@ A lab to play and test oslo.concurrency.
 Setup your lab:
 
 ```sh
+# clone the lab locally (by example in ~/)
 $ git clone https://github.com/4383/oslo.concurrency.lab
 $ cd oslo.concurrency.lab
 $ pipenv shell
@@ -20,14 +21,10 @@ represent them:
 ```sh
 $ tree -L 1
 .
-├── payloads
 ├── pocs
 ├── README.md
 └── requirements.txt
 ```
-
-The `payloads` directory help you to store the things to test against
-oslo.concurrency, by example a new feature in a given library.
 
 The `pocs` directory store all the given available pocs that you can
 use to emulate some classical use case of oslo.concurrency.
@@ -38,9 +35,9 @@ to use this lab.
 The `requirements.txt` store all the default needed dependencies to play with
 this lab. By default all the dependencies are pulled from pypi and official
 repositories but in the case where you want to tests some development version
-or things like that, then you need to delete put your development version
-in `payloads` and then with `pip` uninstall the default version and replace
-it by the version in available in `payload`. See the fasteners example for more
+or things like that, then you need to delete the already installed requirements
+that you want to test here and install your development version
+from your local environment by example. See the fasteners example for more
 related examples.
 
 ### fasteners locks by offset
@@ -54,14 +51,18 @@ all file per lock like the current version of fasteners.
 Setup fasteners:
 
 ```sh
-$ # use the `payloads` directory to clone the dependencies to test
-$ cd payloads/
+$ pwd
+~/oslo.concurrency.log
+$ # be sure to use your virtualenv created previously
+$ pipenv shell
+$ # clone fasteners somewhere in your file system (by example in ~/)
 $ git clone https://github.com/harlowja/fasteners
 $ cd fasteners
 $ git checkout offset-locks
 $ pip uninstall fasteners
 $ python setup.py develop
-$ cd ..
+# Then return to your lab clone
+$ cd ~/oslo.concurrency.lab
 ```
 
 Then execute the poc:
@@ -73,9 +74,9 @@ $ python pocs/locks.py
 ### reset your lab
 
 ```sh
+$ cd <path to your clone of oslo.concurrency.lab>
 $ deactivate
 $ pipenv --rm
-$ rm -rf payloads/*
 $ pipenv shell
 $ pip install -r requirements
 ```
