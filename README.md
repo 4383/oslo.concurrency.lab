@@ -65,6 +65,23 @@ $ python setup.py develop
 $ cd ~/oslo.concurrency.lab
 ```
 
+Also you need to setup oslo.concurrency to introduce some new params and
+adapt the code:
+
+```sh
+$ pwd
+~/oslo.concurrency.log
+$ # be sure to use your virtualenv created previously
+$ pipenv shell
+$ # clone fasteners somewhere in your file system (by example in ~/)
+$ git clone https://github.com/4383/oslo.concurrency -b debug-lockfile-delete
+$ cd oslo.concurrency
+$ pip uninstall oslo.concurrency
+$ python setup.py develop
+# Then return to your lab clone
+$ cd ~/oslo.concurrency.lab
+```
+
 Then execute the poc:
 
 ```sh
