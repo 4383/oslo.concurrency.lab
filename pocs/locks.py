@@ -44,8 +44,10 @@ def main():
     args = parser.parse_args()
 
     target = not_thread_safe_locked_with_oslo_concurrency_base
+    parafunc = not_thread_safe_locked_with_oslo_concurrency_base
     if args.offset:
         target = not_thread_safe_locked_with_oslo_concurrency_offset
+        parafunc = not_thread_safe_locked_with_oslo_concurrency_offset_parallel
 
     print("#" * (len(target.__doc__) + 4))
     print("  {}".format(target.__name__))
@@ -58,10 +60,8 @@ def main():
         t = threading.Thread(target=target, args=passed_args)
         threads.append(t)
 
-    parallel = threading.Thread(
-            target=not_thread_safe_locked_with_oslo_concurrency_offset_parallel,
-            args=("parallel", args.repeat, args.sleep)
-)
+    parallel = threading.Thread(target=parafunc,
+                                args=("parallel", args.repeat, args.sleep))
     threads.append(parallel)
 
     for t in threads:
