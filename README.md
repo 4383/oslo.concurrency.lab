@@ -85,8 +85,18 @@ $ cd ~/oslo.concurrency.lab
 Then execute the poc:
 
 ```sh
-$ python pocs/locks.py
+$ # getting help
+$ ./pocs/locks/poc.sh -h
+$ # run all scenarios with the default config
+$ ./pocs/locks/poc.sh
+$ # run specific scenario
+$ ./pocs/locks/poc.sh -s=scenario1
 ```
+
+You can use the help or take a look to the script (`pocs/locks/poc.sh`)
+to get different scenarios
+
+Scenarios help you to test offset and mixed locks.
 
 ### reset your lab
 
